@@ -35,7 +35,6 @@ class FormattedTextState extends State<FormattedText> {
         style: const TextStyle(
           color: Colors.white,
           fontSize: 18,
-          fontFamily: 'NotoSans',
         ),
       );
     }

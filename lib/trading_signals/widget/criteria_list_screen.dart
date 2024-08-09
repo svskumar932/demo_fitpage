@@ -66,7 +66,8 @@ class CriteriaListScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             FormattedText(
-                              text: criteria['text'],
+                              text: (criteria['text'] as String)
+                                  .replaceAll("â", "\u2019"),
                               onTap: (linkableKey) {
                                 final type = criteria['type'];
                                 final variable = criteria[type];
