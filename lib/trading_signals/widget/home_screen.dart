@@ -43,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() {
                             selectedIndex = index;
                           });
-                          // Handle navigation to detail screen
-                          // Navigator.push(...);
+                          viewModel.onSignalTap(index, context);
                         },
                         child: TradingSignalListItem(
                           signal: signal,

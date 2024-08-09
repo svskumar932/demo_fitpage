@@ -43,7 +43,6 @@ class TradingSignalListItem extends StatelessWidget {
         child: Text(
           signal.tag,
           style: TextStyle(
-            fontWeight: FontWeight.bold,
             color: signal.color.toColor(),
             decoration:
                 isUnderlined ? TextDecoration.none : TextDecoration.underline,

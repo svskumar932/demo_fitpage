@@ -1,11 +1,9 @@
-import 'criteria.dart';
-
 class TradingSignal {
   final int id;
   final String name;
   final String tag;
   final String color;
-  final List<Criteria> criteria;
+  final List<dynamic> criteria;
 
   TradingSignal({
     required this.id,
@@ -16,16 +14,12 @@ class TradingSignal {
   });
 
   factory TradingSignal.fromJson(Map<String, dynamic> json) {
-    var criteriaList = json['criteria'] as List;
-    List<Criteria> criteria =
-        criteriaList.map((i) => Criteria.fromJson(i)).toList();
-
     return TradingSignal(
       id: json['id'],
       name: json['name'],
       tag: json['tag'],
       color: json['color'],
-      criteria: criteria,
+      criteria: json['criteria'],
     );
   }
 }
