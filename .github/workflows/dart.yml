@@ -9,14 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-         flutter-version: 'stable' # or '3.0.0' or a specific channel
-      - run: flutter pub get
-      - run: flutter format --output=none --set-exit-if-changed .
-      - run: flutter analyze
-      - run: flutter test
-      - run: flutter build apk --release
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+    - run: flutter pub get
+    - run: flutter format --output=none --set-exit-if-changed .
+    - run: flutter analyze
+    - run: flutter test
+    - run: flutter build apk --release
