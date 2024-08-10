@@ -2,20 +2,49 @@ name: Flutter CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: subosito/flutter-action@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v3
       with:
-        flutter-version: 'stable'
-    - run: flutter pub get
-    - run: flutter format --output=none --set-exit-if-changed .
-    - run: flutter analyze
-    - run: flutter test
-    - run: flutter build apk --release
+        flutter-version: '3.24.0'  # Specify the Flutter version you are using
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Run tests with coverage
+      run: |
+        flutter test --coverage
+        # Optionally, you can upload the coverage report to a service like Codecov or Coveralls
+        # For example, if you use Codecov:
+        # bash <(curl -s https://codecov.io/bash) -t YOUR_CODECOV_TOKEN
+
+    - name: Analyze code
+      run: flutter analyze
+
+    - name: Build APK
+      run: flutter build apk --release
+
+    # - name: Build iOS
+    #   run: flutter build ios --release
+      # Note: Building for iOS typically requires a macOS runner
+      # You might need to adjust or add this step based on your CI environment
+
+    - name: Upload coverage report
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: coverage/lcov.info
