@@ -37,10 +37,10 @@ jobs:
     - name: Build APK
       run: flutter build apk --release
 
-    # - name: Build iOS
-    #   if: runner.os == 'macOS'
-    #   run: flutter build ios --release
-    #   # Note: Building for iOS requires a macOS runner
+    - name: Build iOS
+      if: runner.os == 'macOS'
+      run: flutter build ios --release
+      # Note: Building for iOS requires a macOS runner
 
     - name: Upload coverage report
       if: success()
